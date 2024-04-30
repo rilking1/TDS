@@ -13,10 +13,14 @@ function App() {
         : <table className="table table-striped" aria-labelledby="tabelLabel">
             <thead>
                 <tr>
-                    <th>Date</th>
-                    <th>Temp. (C)</th>
-                    <th>Temp. (F)</th>
-                    <th>Summary</th>
+
+                    <th>description</th>
+                    <th>status</th>
+                    <th>complexity</th>
+                    <th>photoId</th>
+                    <th>Deadline</th>
+
+
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +30,8 @@ function App() {
                         <td>{forecast.status}</td>
                         <td>{forecast.complexity}</td>
                         <td>{forecast.photoId}</td>
+                        <td>{forecast.deadline}</td>
+
                     </tr>
                 )}
             </tbody>
@@ -40,13 +46,13 @@ function App() {
     );
     
     async function populateWeatherData() {
-        await fetch('https://localhost:7263/api/tasks/1')
+        await fetch('https://localhost:7263/api/tasks/')
             .then(response => response.json())
             .then(console.log)
-            .then(setForecasts)
-        //const response = await fetch('api/tasks/1');
-        //const data = await response.json();
-        //console.log(response.json());
+            .then(forecasts)
+        const response = await fetch('https://localhost:7263/api/tasks/');
+        const data = await response.json();
+        setForecasts(data);
         
     }
 }
